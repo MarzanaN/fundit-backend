@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-a5dayreoxphw(!-$-p+6qfu09-!_chg&u_*4am+ezm6#i4-$sc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'fundit-backend.onrender.com']
 
 
 # Application definition
@@ -141,7 +141,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8000",
+    "fundit-backend.onrender.com"
 ]
 
 REST_FRAMEWORK = {
