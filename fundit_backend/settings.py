@@ -13,10 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
-from dotenv import load_dotenv
 
-
-load_dotenv()  
 
 AUTH_USER_MODEL = 'base.CustomUser'
 
