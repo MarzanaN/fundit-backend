@@ -64,7 +64,7 @@ ROOT_URLCONF = 'fundit_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../fundit-react-app/build')],
+        'DIRS': [os.path.join(BASE_DIR, 'fundit_backend', 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,6 +76,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'fundit_backend.wsgi.application'
 
@@ -126,10 +127,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-
-TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'fundit_backend', 'build')]
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'fundit_backend', 'build', 'static')]
+STATIC_URL = '/static/'
 
 
 
