@@ -49,13 +49,13 @@ User = get_user_model()
 class FrontendAppView(View):
     def get(self, request):
         try:
-            with open(os.path.join(settings.BASE_DIR, 'build', 'index.html')) as f:
+            index_path = os.path.join(settings.BASE_DIR, '..', 'build', 'index.html')
+            with open(index_path) as f:
                 return HttpResponse(f.read())
         except FileNotFoundError:
             return HttpResponse(
                 "index.html not found. Did you run 'npm run build'?", status=501,
             )
-
 
 @method_decorator(csrf_exempt, name='dispatch')
 class RegisterView(generics.CreateAPIView):
