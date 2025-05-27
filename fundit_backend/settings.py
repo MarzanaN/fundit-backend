@@ -129,12 +129,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../fundit-react-app/build/static'),
+    os.path.join(BASE_DIR, '..', 'build', 'static'), 
 ]
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
-TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'fundit-react-app/build')]
+TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, '..', 'build')]  
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

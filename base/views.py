@@ -57,6 +57,7 @@ class FrontendAppView(View):
                 "index.html not found. Did you run 'npm run build'?", status=501,
             )
 
+
 @method_decorator(csrf_exempt, name='dispatch')
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
