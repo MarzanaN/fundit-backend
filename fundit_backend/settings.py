@@ -128,14 +128,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'fundit_backend', 'build', 'static'),
-]
+TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'fundit_backend', 'build')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'fundit_backend', 'build', 'static')]
 
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
-TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'fundit_backend', 'build')]
 
 
 

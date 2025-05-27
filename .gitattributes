@@ -1,0 +1,8 @@
+# Enforce consistent line endings
+* text=auto
+
+# Treat all JS, CSS, HTML files as text (autoconvert CRLF <-> LF)
+*.js text
+*.css text
+*.html text
+*.json text
