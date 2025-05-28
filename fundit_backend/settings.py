@@ -104,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Serve static files from React build static folder
 STATICFILES_DIRS = [
-    Path(REACT_BUILD_DIR) / 'static',
+    REACT_BUILD_DIR / 'static',
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -116,6 +116,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -161,3 +162,4 @@ SITE_URL = os.environ.get('SITE_URL', 'http://localhost:8000')
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
 
 
+REACT_BUILD_DIR = os.path.join(BASE_DIR, 'build')
