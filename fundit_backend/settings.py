@@ -105,6 +105,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'fundit_backend', 'build', 'static')]
+
 
 
 LANGUAGE_CODE = 'en-us'
