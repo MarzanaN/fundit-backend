@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 STATICFILES_DIRS = [
-    str(REACT_BUILD_DIR / 'static'),
+    Path(REACT_BUILD_DIR) / 'static',
 ]
 
 
