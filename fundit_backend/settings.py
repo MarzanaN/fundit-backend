@@ -18,8 +18,8 @@ AUTH_USER_MODEL = 'base.CustomUser'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Now build folder is directly under backend root (BASE_DIR)
-REACT_BUILD_DIR = os.path.join(BASE_DIR, 'build')
+REACT_BUILD_DIR = BASE_DIR / 'build'
+
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-dev-secret-key')
 
@@ -162,4 +162,4 @@ SITE_URL = os.environ.get('SITE_URL', 'http://localhost:8000')
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
 
 
-REACT_BUILD_DIR = os.path.join(BASE_DIR, 'build')
+
