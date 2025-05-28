@@ -51,12 +51,14 @@ class FrontendAppView(View):
         index_path = os.path.join(settings.REACT_BUILD_DIR, 'index.html')
         print("Looking for index.html at:", os.path.abspath(index_path))
         try:
-            with open(index_path) as f:
-                return HttpResponse(f.read())
+            with open(index_path, encoding='utf-8') as f:
+                return HttpResponse(f.read(), content_type='text/html')
         except FileNotFoundError:
             print("File not found at path:", os.path.abspath(index_path))
             return HttpResponse(
-                "index.html not found. Did you run 'npm run build'?", status=501,
+                "<h1>index.html not found</h1><p>Did you forget to run <code>npm run build</code> in the frontend?</p>",
+                status=501,
+                content_type='text/html'
             )
 
 
