@@ -20,7 +20,7 @@ AUTH_USER_MODEL = 'base.CustomUser'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-REACT_BUILD_DIR = BASE_DIR / 'build'
+REACT_BUILD_DIR = Path(__file__).resolve().parent / 'build'
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-dev-secret-key')
 
