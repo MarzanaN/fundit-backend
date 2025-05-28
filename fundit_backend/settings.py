@@ -20,13 +20,15 @@ AUTH_USER_MODEL = 'base.CustomUser'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-REACT_BUILD_DIR = Path(__file__).resolve().parent / 'build'
+REACT_BUILD_DIR = os.path.join(BASE_DIR, 'fundit-react-app', 'build')
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-dev-secret-key')
 
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 INSTALLED_APPS = [
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',  
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -120,10 +123,8 @@ USE_I18N = True
 USE_TZ = True
 
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
-
-
-STATIC_ROOT = Path(__file__).resolve().parent.parent / 'staticfiles'
 
 
 
