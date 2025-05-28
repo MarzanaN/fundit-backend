@@ -48,7 +48,7 @@ User = get_user_model()
 
 class FrontendAppView(View):
     def get(self, request):
-        index_path = os.path.join(settings.BASE_DIR, 'fundit_backend', 'build', 'index.html')
+        index_path = os.path.join(settings.BASE_DIR, 'build', 'index.html')
         print("Looking for index.html at:", os.path.abspath(index_path))
         try:
             with open(index_path) as f:

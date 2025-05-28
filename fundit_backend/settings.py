@@ -20,6 +20,7 @@ AUTH_USER_MODEL = 'base.CustomUser'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+REACT_BUILD_DIR = BASE_DIR / 'build'
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-dev-secret-key')
 
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'fundit_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'fundit_backend', 'build')],
+        'DIRS': [str(REACT_BUILD_DIR)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,8 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'fundit_backend', 'build', 'static')]
-
+STATICFILES_DIRS = [
+    str(REACT_BUILD_DIR / 'static'),
+]
 
 
 LANGUAGE_CODE = 'en-us'
@@ -121,7 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
+STATIC_ROOT = Path(__file__).resolve().parent.parent / 'staticfiles'
 
 
 
