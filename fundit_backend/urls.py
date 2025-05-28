@@ -3,7 +3,9 @@ from django.urls import path, include
 from base.views import FrontendAppView
 from django.conf import settings
 from django.conf.urls.static import static
-import os
+from pathlib import Path
+
+REACT_BUILD_DIR = Path(settings.REACT_BUILD_DIR)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,6 +16,5 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(
         settings.STATIC_URL,
-        document_root=os.path.join(settings.BASE_DIR, 'build', 'static')
+        document_root=str(REACT_BUILD_DIR / 'static')
     )
-
