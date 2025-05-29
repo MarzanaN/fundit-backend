@@ -600,15 +600,17 @@ class RepaymentGoalHistoryListView(generics.ListAPIView):
 
 class GuestLoginView(APIView):
     def post(self, request):
-        guest_user = create_guest_user()
+        try:
+            guest_user = create_guest_user()
+            refresh = RefreshToken.for_user(guest_user)
 
-        refresh = RefreshToken.for_user(guest_user)
-
-        return Response({
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-            'user': CustomUserSerializer(guest_user).data
-        }, status=status.HTTP_201_CREATED)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'user': CustomUserSerializer(guest_user).data
+            }, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['POST'])
