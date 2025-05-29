@@ -70,10 +70,10 @@ WSGI_APPLICATION = 'fundit_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='fundit_db_7lpk'),
-        'USER': config('DB_USER', default='fundit_db_7lpk_user'),
+        'NAME': config('DB_NAME', default='fundit_db'),
+        'USER': config('DB_USER', default='fundit_user'),
         'PASSWORD': config('DB_PASSWORD', default=''),
-        'HOST': config('DB_HOST', default='dpg-d0sdcak9c44c73f2vhj0-a'),
+        'HOST': config('DB_HOST', default='localhost'),
         'PORT': config('DB_PORT', default='5432'),
     }
 }
@@ -150,7 +150,9 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'fundit.app.team@gmail.com'
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='fundit.app.team@gmail.com')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+
 SITE_URL = config('SITE_URL', default='http://localhost:8000')
+
 FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:3000')
 
 
