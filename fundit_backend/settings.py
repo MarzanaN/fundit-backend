@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
-import environ
 
 AUTH_USER_MODEL = 'base.CustomUser'
 
@@ -75,9 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fundit_backend.wsgi.application'
 
-
-env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 DATABASES = {
     'default': {
