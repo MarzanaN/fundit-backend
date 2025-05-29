@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+import environ
 
 AUTH_USER_MODEL = 'base.CustomUser'
 
@@ -43,8 +44,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',  
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,7 +60,6 @@ ROOT_URLCONF = 'fundit_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # Serve React's index.html template from build folder
         'DIRS': [str(REACT_BUILD_DIR)],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -74,6 +74,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'fundit_backend.wsgi.application'
+
+
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 DATABASES = {
     'default': {
