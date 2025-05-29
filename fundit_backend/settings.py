@@ -13,11 +13,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 REACT_BUILD_DIR = BASE_DIR / 'build'
 
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'your-dev-secret-key')
+SECRET_KEY = config('SECRET_KEY', default='your-dev-secret-key')
 
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = [host.strip() for host in config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',')]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -147,11 +147,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com' 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'fundit.app.team@gmail.com')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = 'fundit.app.team@gmail.com'
-SITE_URL = os.environ.get('SITE_URL', 'http://localhost:8000')
-FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='fundit.app.team@gmail.com')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+SITE_URL = config('SITE_URL', default='http://localhost:8000')
+FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:3000')
 
 
 
