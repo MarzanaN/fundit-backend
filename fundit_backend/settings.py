@@ -70,10 +70,10 @@ WSGI_APPLICATION = 'fundit_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='fundit_db'),
-        'USER': config('DB_USER', default='fundit_user'),
+        'NAME': config('DB_NAME', default='fundit_db_7lpk'),
+        'USER': config('DB_USER', default='fundit_db_7lpk_user'),
         'PASSWORD': config('DB_PASSWORD', default=''),
-        'HOST': config('DB_HOST', default='localhost'),
+        'HOST': config('DB_HOST', default='dpg-d0sdcak9c44c73f2vhj0-a'),
         'PORT': config('DB_PORT', default='5432'),
     }
 }
