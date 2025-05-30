@@ -75,7 +75,7 @@ class RegisterView(generics.CreateAPIView):
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
 
-        activation_link = f"{settings.SITE_URL}/api/activate/{uid}/{token}/"
+        activation_link = f"{settings.SITE_URL}/activate/{uid}/{token}/"
 
         subject = 'Activate Your Fundit Account'
         message = (
