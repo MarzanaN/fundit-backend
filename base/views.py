@@ -25,6 +25,7 @@ from decimal import Decimal, InvalidOperation
 from .services import update_goal_with_history, create_guest_user
 from django.contrib.auth import logout
 from django.core.management import call_command
+
 import os
 
 
@@ -75,7 +76,7 @@ class RegisterView(generics.CreateAPIView):
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
 
-        activation_link = f"{settings.SITE_URL}/activate/{uid}/{token}/"
+        activation_link = f"http://localhost:3000/activate/{uid}/{token}/"
 
         subject = 'Activate Your Fundit Account'
         message = (
@@ -97,6 +98,26 @@ class RegisterView(generics.CreateAPIView):
         except Exception as e:
             print(f"❌ Email sending failed: {e}")
 
+
+class ActivateAccountView(APIView):
+    permission_classes = []  # Allow any user to call this
+
+    def post(self, request, uidb64, token):
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            return Response({'detail': 'Invalid activation link.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if user.is_active:
+            return Response({'detail': 'Account already activated.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if default_token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+            return Response({'detail': 'Account activated successfully.'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'detail': 'Invalid or expired token.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class VerifyEmailView(APIView):
@@ -600,17 +621,15 @@ class RepaymentGoalHistoryListView(generics.ListAPIView):
 
 class GuestLoginView(APIView):
     def post(self, request):
-        try:
-            guest_user = create_guest_user()
-            refresh = RefreshToken.for_user(guest_user)
+        guest_user = create_guest_user()
 
-            return Response({
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': CustomUserSerializer(guest_user).data
-            }, status=status.HTTP_201_CREATED)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        refresh = RefreshToken.for_user(guest_user)
+
+        return Response({
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+            'user': CustomUserSerializer(guest_user).data
+        }, status=status.HTTP_201_CREATED)
 
 
 @api_view(['POST'])

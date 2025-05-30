@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     RegisterView, LoginView, UserView, UpdateSettingsView,
     PasswordResetRequestView, PasswordResetConfirmView,
-    GetUserEmailView, VerifyEmailView, VerifyResetTokenView, support_request,
+    GetUserEmailView, VerifyResetTokenView, support_request,
     IncomeCreateView, UpdateIncomeEntriesViewSet, ExpenseCreateView,
     BudgetCreateView, UpdateExpenseEntriesViewSet, UpdateBudgetEntriesViewSet,
     GeneralSavingsCreateView, UpdateGeneralSavingsEntriesViewSet, 
@@ -11,7 +11,7 @@ from .views import (
     UpdateRepaymentGoalsViewSet, GeneralSavingHistoryListView,
     SavingsGoalHistoryListView,
     RepaymentGoalHistoryListView, ChangePasswordView, 
-    GuestLoginView, logout_view, delete_account_request
+    GuestLoginView, logout_view, delete_account_request, ActivateAccountView
 )
 
 router = DefaultRouter()
@@ -24,7 +24,7 @@ router.register(r'repayment-goals', UpdateRepaymentGoalsViewSet, basename='repay
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
-    path('activate/<uidb64>/<token>/', VerifyEmailView.as_view(), name='activate'),
+    path('activate/<uidb64>/<token>/', ActivateAccountView.as_view(), name='activate-account'),
     path('login/', LoginView.as_view(), name='login'),
     path('guest-login/', GuestLoginView.as_view(), name='guest-login'),
     path('logout/', logout_view, name='logout'),
