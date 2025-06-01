@@ -103,6 +103,7 @@ def populate_dummy_data(user):
     General_Saving.objects.bulk_create([
         General_Saving(user=user, savings_name='Emergency Fund', amount=1100.00, date=date(current_year, 3, 15)),
         General_Saving(user=user, savings_name='Main Savings', amount=2800.00, date=date(current_year, 1, 15)),
+        General_Saving(user=user, savings_name='Long-term Savings', amount=5500.00, date=date(current_year, 1, 15)),
     ])
 
     Savings_Goal.objects.bulk_create([
