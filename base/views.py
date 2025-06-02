@@ -95,7 +95,7 @@ class RegisterView(generics.CreateAPIView):
         uid = urlsafe_base64_encode(force_bytes(user.pk))
 
         # Create activation link pointing to frontend route with UID and token
-        activation_link = f"http://localhost:3000/activate/{uid}/{token}/"
+        activation_link = f"https://fundit-app.com/activate/{uid}/{token}/"
 
         # Email subject and message content
         subject = 'Activate Your Fundit Account'
