@@ -251,30 +251,23 @@ class PasswordResetRequestView(APIView):
     # Allow any user (authenticated or not) to access this view
     permission_classes = [permissions.AllowAny]
 
-    # Handles POST requests to initiate password reset
     def post(self, request):
-        # Get the email from the request body
         email = request.data.get('email')
         if not email:
-            # Return an error if email is missing
             return Response({'detail': 'Email is required.'}, status=400)
 
         try:
-            # Try to find a user with the provided email
             user = User.objects.get(email=email)
 
-            # Check if the account is active before sending reset link
             if not user.is_active:
                 return Response({'detail': 'Account is not activated. Please check your email.'}, status=403)
 
-            # Encode user ID and generate token for password reset
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = default_token_generator.make_token(user)
 
-            # Build the reset link to be sent in the email
-            reset_link = f"{settings.FRONTEND_URL}/reset-password/{uid}/{token}/"
+            # Hardcoded frontend reset link (safe fallback)
+            reset_link = f"https://fundit-app.com/reset-password/{uid}/{token}/"
 
-            # Prepare the email content
             subject = 'Reset Your Fundit Password'
             message = (
                 f'Hello {user.first_name or "there"},\n\n'
@@ -283,7 +276,6 @@ class PasswordResetRequestView(APIView):
                 'If you didn’t request this, you can safely ignore it.'
             )
 
-            # Send the password reset email
             send_mail(
                 subject,
                 message,
@@ -293,12 +285,18 @@ class PasswordResetRequestView(APIView):
             )
             print("✅ Password reset email sent to:", user.email)
 
-            # Respond with success message
             return Response({'detail': 'Password reset email sent.'})
 
         except User.DoesNotExist:
-            # Return error if user with given email does not exist
             return Response({'detail': 'No user with that email.'}, status=404)
+
+        except Exception as e:
+            print("❌ Error sending password reset email:", str(e))
+            import traceback
+            traceback.print_exc()
+            return Response({'detail': 'An error occurred while sending reset email. Please try again later.'}, status=500)
+
+
 
     
 # API view to handle password reset confirmation
