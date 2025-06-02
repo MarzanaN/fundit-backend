@@ -11,7 +11,8 @@ from .views import (
     UpdateRepaymentGoalsViewSet, GeneralSavingHistoryListView,
     SavingsGoalHistoryListView,
     RepaymentGoalHistoryListView, ChangePasswordView, 
-    GuestLoginView, logout_view, delete_account_request, ActivateAccountView
+    GuestLoginView, logout_view, delete_account_request, ActivateAccountView,
+    ActivateAccountAPI
 )
 
 router = DefaultRouter()
@@ -25,6 +26,7 @@ router.register(r'repayment-goals', UpdateRepaymentGoalsViewSet, basename='repay
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('activate/<uidb64>/<token>/', ActivateAccountView.as_view(), name='activate-account'),
+    path('api/activate/<uidb64>/<token>/', ActivateAccountAPI.as_view(), name='activate-api'),
     path('login/', LoginView.as_view(), name='login'),
     path('guest-login/', GuestLoginView.as_view(), name='guest-login'),
     path('logout/', logout_view, name='logout'),

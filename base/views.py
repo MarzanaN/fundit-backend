@@ -119,6 +119,25 @@ class RegisterView(generics.CreateAPIView):
         except Exception as e:
             print(f"❌ Email sending failed: {e}")  # Debug error message
 
+class ActivateAccountAPI(APIView):
+    permission_classes = []  # Allow any
+
+    def post(self, request, uidb64, token):
+        try:
+            uid = urlsafe_base64_decode(uidb64).decode()
+            user = User.objects.get(pk=uid)
+        except (User.DoesNotExist, ValueError, TypeError, OverflowError):
+            return Response({"detail": "Invalid UID"}, status=status.HTTP_400_BAD_REQUEST)
+
+        if user.is_active:
+            return Response({"detail": "Account already activated"}, status=status.HTTP_400_BAD_REQUEST)
+
+        if default_token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+            return Response({"detail": "Account activated successfully"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"detail": "Invalid or expired token"}, status=status.HTTP_400_BAD_REQUEST)
 
 # View to handle account activation via a POST request
 class ActivateAccountView(APIView):
