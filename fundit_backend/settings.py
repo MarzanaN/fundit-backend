@@ -111,7 +111,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     'https://fundit-backend.onrender.com',
     'https://fundit-app.com',
-    'https://fundit-frontend.vercel.app',
+    'https://fundit-frontend-c3orndkuy-marzana-nahars-projects.vercel.app',
 ]
 
 REST_FRAMEWORK = {
