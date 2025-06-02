@@ -13,6 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 REACT_BUILD_DIR = BASE_DIR / 'build'
 
+CORS_ALLOW_CREDENTIALS = True
 
 SECRET_KEY = config('SECRET_KEY', default='your-dev-secret-key')
 
@@ -111,7 +112,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     'https://fundit-backend.onrender.com',
     'https://fundit-app.com',
-    'https://fundit-frontend-c3orndkuy-marzana-nahars-projects.vercel.app',
+    'https://fundit-frontend.vercel.app',
 ]
 
 REST_FRAMEWORK = {
