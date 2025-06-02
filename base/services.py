@@ -1,3 +1,18 @@
+''' 
+Services.py is used to create unique guest sessions to allow users to
+explore the features of Fundit before they commit to registering as 
+a full time user. The create guest_user function generates a unique email 
+address which allows multiple users to have independent sessions testing
+the features without data infering between each of their sessions. They
+are automatically signed in with a unique guest user session when they 
+click on the 'Explore as Guest' button on the frontend home page.
+
+This function also calls on the populate dummy data which populates the 
+models with dummy data so the user can visuals the charts on the frontend
+and better understand and test out the features.
+
+
+'''
 import uuid
 from datetime import date
 from decimal import Decimal

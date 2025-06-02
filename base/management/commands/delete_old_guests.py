@@ -5,10 +5,10 @@ from base.models import CustomUser
 
 
 class Command(BaseCommand):
-    help = 'Deletes guest users older than 24 hours'
+    help = 'Deletes guest users older than 5 hours'
 
     def handle(self, *args, **kwargs):
-        cutoff = now() - timedelta(hours=12)
+        cutoff = now() - timedelta(hours=15)
         guests_to_delete = CustomUser.objects.filter(is_guest=True, date_joined__lt=cutoff)
         deleted_count = guests_to_delete.count()
         guests_to_delete.delete()

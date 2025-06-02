@@ -88,7 +88,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Serve static files from React build static folder
 STATICFILES_DIRS = [
     REACT_BUILD_DIR / 'static',
 ]

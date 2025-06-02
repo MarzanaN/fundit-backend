@@ -47,6 +47,5 @@ urlpatterns = [
     path('savings-goals/<int:pk>/history/', SavingsGoalHistoryListView.as_view(), name='savings-goal-history'),
     path('repayment-goals/<int:pk>/history/', RepaymentGoalHistoryListView.as_view(), name='repayment-goal-history'),
     path('', include(router.urls)),
-    
-]
 
+]
