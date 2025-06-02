@@ -147,7 +147,11 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
 SITE_URL = config('SITE_URL', default='http://localhost:8000')
 
-FRONTEND_URL = 'http://localhost:3000'
+FRONTEND_URLS = [
+    'http://localhost:3000',
+    'https://fundit-app.com',
+]
+
 
 
 
