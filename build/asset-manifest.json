@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.0c732dfb.css",
-    "main.js": "/static/js/main.7e5760f6.js",
+    "main.js": "/static/js/main.661d578c.js",
     "static/js/453.99dcf01f.chunk.js": "/static/js/453.99dcf01f.chunk.js",
     "static/media/Fundit-phone.png": "/static/media/Fundit-phone.3a15b287e7cdf7a21730.png",
     "static/media/Fundit mockup.jpg": "/static/media/Fundit mockup.ffb4d779a257c18b875d.jpg",
     "static/media/Fundit.png": "/static/media/Fundit.e5a506e5359efc3863cb.png",
     "index.html": "/index.html",
     "main.0c732dfb.css.map": "/static/css/main.0c732dfb.css.map",
-    "main.7e5760f6.js.map": "/static/js/main.7e5760f6.js.map",
+    "main.661d578c.js.map": "/static/js/main.661d578c.js.map",
     "453.99dcf01f.chunk.js.map": "/static/js/453.99dcf01f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0c732dfb.css",
-    "static/js/main.7e5760f6.js"
+    "static/js/main.661d578c.js"
   ]
 }
